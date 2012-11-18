@@ -1,10 +1,11 @@
-HAR Viewer������
+HAR Viewer汉化版
 ================
-* �����ߣ�zhujianfeng, ����΢��@fdjianfeng
+* 汉化者：zhujianfeng, 新浪微博@fdjianfeng
 * http://www.zhujianfeng.info
-* ֻ�������ٲ�ͼ���ֵĲ˵���tooltip����Ϣ
-* �޸���ԭ����IE8�������汾�²���ʹ���¼�������ʽֱ����ʾ�ٲ�ͼ��bug
-		$("#content").bind("onViewerPreInit", function(event){
+* 只汉化了瀑布图部分的菜单和tooltip等信息
+* 修复了原版在IE8及更早版本下不能使用事件触发方式直接显示瀑布图的bug
+
+	$("#content").bind("onViewerPreInit", function(event){
 		    // Get application object
 		    var viewer = event.target.repObject;
 			viewer.removeTab("Home");
@@ -20,7 +21,7 @@ HAR Viewer������
 		    preview.toolbar.removeButton("clear");
 
 		    viewer.loadHar("z.har");
-		});
+	});
 
 HAR Viewer
 ==========
@@ -63,4 +64,3 @@ Development
 * To start the build, go to the webapp/scripts directory and execute the following command:
 
 `..\..\requirejs\build\build.bat app.build.js`
-
