@@ -1,10 +1,10 @@
-HAR Viewerºº»¯°æ
+HAR Viewerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ================
-* ºº»¯Õß£ºzhujianfeng, ÐÂÀËÎ¢²©@fdjianfeng
+* ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½zhujianfeng, ï¿½ï¿½ï¿½ï¿½Î¢ï¿½ï¿½@fdjianfeng
 * http://www.zhujianfeng.info
-* Ö»ºº»¯ÁËÆÙ²¼Í¼²¿·ÖµÄ²Ëµ¥ºÍtooltipµÈÐÅÏ¢
-* ÐÞ¸´ÁËÔ­°æÔÚIE8¼°¸üÔç°æ±¾ÏÂ²»ÄÜÊ¹ÓÃÊÂ¼þ´¥·¢·½Ê½Ö±½ÓÏÔÊ¾ÆÙ²¼Í¼µÄbug
-	$("#content").bind("onViewerPreInit", function(event){
+* Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù²ï¿½Í¼ï¿½ï¿½ï¿½ÖµÄ²Ëµï¿½ï¿½ï¿½tooltipï¿½ï¿½ï¿½ï¿½Ï¢
+* ï¿½Þ¸ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½IE8ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ±¾ï¿½Â²ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½Ö±ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ù²ï¿½Í¼ï¿½ï¿½bug
+		$("#content").bind("onViewerPreInit", function(event){
 		    // Get application object
 		    var viewer = event.target.repObject;
 			viewer.removeTab("Home");
@@ -20,7 +20,7 @@ HAR Viewerºº»¯°æ
 		    preview.toolbar.removeButton("clear");
 
 		    viewer.loadHar("z.har");
-	});
+		});
 
 HAR Viewer
 ==========
