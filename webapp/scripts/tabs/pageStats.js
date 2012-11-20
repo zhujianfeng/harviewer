@@ -455,9 +455,16 @@ var Pie = domplate(
         var sofar = 0; // keep track of progress
 
         var data = pie.data;
+        for (var i in data) {
+            if (data[i].value < 0) {
+                data[i].value = 0;
+            }
+        }
         var total = 0;
-        for (var i in data)
+        for (var i in data) {
             total += data[i].value;
+            console.log(data[i].value);
+        }
 
         if (!total)
         {

@@ -93,7 +93,9 @@ Timeline.prototype = domplate(
         // If no modifier is active remove the current selection.
         if (!control && !shift)
             Selection.unselectAll(row, bar);
-
+        if ($(bar).hasClass("selected")) {
+            return;
+        }
         // Clicked bar toggles its selection state
         Selection.toggle(bar);
 

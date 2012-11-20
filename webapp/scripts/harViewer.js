@@ -189,15 +189,46 @@ HarView.prototype = Lib.extend(new TabView(),
 // ********************************************************************************************* //
 // Initialization
 
-var content = document.getElementById("content");
-var harView = content.repObject = new HarView();
+//var content = document.getElementById("content");
+//var harView = content.repObject = new HarView();
 
 // Fire some events for listeners. This is useful for extending/customizing the viewer.
-Lib.fireEvent(content, "onViewerPreInit");
-harView.initialize(content);
-Lib.fireEvent(content, "onViewerInit");
+//Lib.fireEvent(content, "onViewerPreInit");
+//harView.initialize(content);
+//Lib.fireEvent(content, "onViewerInit");
 
-Trace.log("HarViewer; initialized OK");
+//Trace.log("HarViewer; initialized OK");
+var harView = null;
+var HarViewInterface = {
+    render : function(harUrl) {
+        var content = document.getElementById("content");
+        harView = content.repObject = new HarView();
+
+        // Fire some events for listeners. This is useful for extending/customizing the viewer.
+        Lib.fireEvent(content, "onViewerPreInit");
+        harView.loadHar(harUrl);
+        harView.initialize(content);
+        Lib.fireEvent(content, "onViewerInit");
+    },
+    reload : function(harUrl) {
+        $("#content").find("table.pageTable").remove();
+        $("#content").find("table.pageTimelineTable td.pageTimelineCol").remove();
+        harView.model.deleteAllPages();
+        harView.loadHar(harUrl,{
+            success: function(){
+                var previewTab = harView.getTab("Preview");
+                previewTab.stats.update([]);
+                var firstBar = Lib.getElementByClass(this.element, "pageBar");
+                if (firstBar) {
+                    Lib.fireEvent(firstBar, "mousemove");
+                }
+            }
+        });
+        
+    }
+
+};
+return HarViewInterface;
 
 // ********************************************************************************************* //
 });

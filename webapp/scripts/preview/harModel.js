@@ -80,6 +80,11 @@ HarModel.prototype =
         return this.input.log.pages ? this.input.log.pages : [];
     },
 
+    deleteAllPages: function(){
+        this.input.log.pages = [];
+        this.input.log.entries = [];
+    },
+
     getFirstPage: function()
     {
         var pages = this.getPages();

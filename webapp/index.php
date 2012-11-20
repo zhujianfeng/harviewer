@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body class="harBody">
+	<input type="button" id="reload" value="重新加载" />
     <div id="content" version="@VERSION@"></div>
-    <!--[if IE]><script type="text/javascript" src="scripts/excanvas/excanvas.js"></script><![endif]-->
     <script src="scripts/jquery.js"></script>
     <script data-main="scripts/harViewer" src="scripts/require.js"></script>
     <link rel="stylesheet" href="css/harViewer.css" type="text/css"/>
@@ -24,10 +24,19 @@
 		    viewer.showTabBar(false);
 		    // Remove toolbar buttons
 		    var preview = viewer.getTab("Preview");
+		    preview.showStats(false);
 		    preview.toolbar.removeButton("download");
 		    preview.toolbar.removeButton("clear");
+		    preview.toolbar.removeButton("showTimeline");
+		    preview.toolbar.removeButton("showStats");
 
-		    viewer.loadHar("z.har");
+		    //viewer.loadHar("z.har");
+		});
+		require(["harViewer"],function(Interface){
+			Interface.render("z.har");
+			$("#reload").click(function(){
+				Interface.reload("g.har");
+			});
 		});
     </script>
 </body>

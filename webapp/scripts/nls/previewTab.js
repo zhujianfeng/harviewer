@@ -5,7 +5,7 @@ define(
     "root": {
         "previewTabLabel": "预览",
         "showTimelineButton": "显示页面时间轴",
-        "hideTimelineButton": "隐藏页面事件轴",
+        "hideTimelineButton": "隐藏页面时间轴",
         "showTimelineTooltip": "显示/隐藏所选页面的时间轴统计信息",
         "showStatsButton": "显示统计信息",
         "hideStatsButton": "隐藏统计信息",

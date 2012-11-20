@@ -1,10 +1,14 @@
-HAR Vieweræ±‰åŒ–ç‰ˆ
+HAR Viewerºº»¯°æ
 ================
-* æ±‰åŒ–è€…ï¼šzhujianfeng, æ–°æµªå¾®åš@fdjianfeng
+* ºº»¯Õß£ºzhujianfeng, ĞÂÀËÎ¢²©@fdjianfeng
 * http://www.zhujianfeng.info
-* åªæ±‰åŒ–äº†ç€‘å¸ƒå›¾éƒ¨åˆ†çš„èœå•å’Œtooltipç­‰ä¿¡æ¯
-* ä¿®å¤äº†åŸç‰ˆåœ¨IE8åŠæ›´æ—©ç‰ˆæœ¬ä¸‹ä¸èƒ½ä½¿ç”¨äº‹ä»¶è§¦å‘æ–¹å¼ç›´æ¥æ˜¾ç¤ºç€‘å¸ƒå›¾çš„bug
+* Ö»ºº»¯ÁËÆÙ²¼Í¼²¿·ÖµÄ²Ëµ¥ºÍtooltipµÈĞÅÏ¢
+* ĞŞ¸´ÁËÔ­°æÔÚIE8¼°¸üÔç°æ±¾ÏÂ²»ÄÜÊ¹ÓÃÊÂ¼ş´¥·¢·½Ê½Ö±½ÓÏÔÊ¾ÆÙ²¼Í¼µÄbug
+* Ôö¼ÓÁËÊ¹ÓÃrequiresjsÖ±½ÓÏòÍâ±©Â¶½Ó¿ÚµÄ¹¦ÄÜ
+* Ôö¼ÓÁËÎŞË¢ĞÂreload¹¦ÄÜ
+* µ÷ÓÃ¿ÉÒÔÊ¹ÓÃÈçÏÂ·½Ê½
 
+`
 	$("#content").bind("onViewerPreInit", function(event){
 		    // Get application object
 		    var viewer = event.target.repObject;
@@ -19,10 +23,14 @@ HAR Vieweræ±‰åŒ–ç‰ˆ
 		    var preview = viewer.getTab("Preview");
 		    preview.toolbar.removeButton("download");
 		    preview.toolbar.removeButton("clear");
-
-		    viewer.loadHar("z.har");
 	});
-
+	require(["harViewer"],function(Interface){
+			Interface.render("z.har");
+			$("#reload").click(function(){
+				Interface.reload("g.har");
+			});
+	});
+`
 HAR Viewer
 ==========
 
@@ -64,3 +72,4 @@ Development
 * To start the build, go to the webapp/scripts directory and execute the following command:
 
 `..\..\requirejs\build\build.bat app.build.js`
+

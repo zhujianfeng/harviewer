@@ -26,8 +26,8 @@ var InfoTip = Lib.extend(
     initialize: function()
     {
         // xxxHonza: The info tip doesn't properly work in IE.
-        if ($.browser.msie)
-            return;
+        //if ($.browser.msie)
+            //return;
 
         var body = $("body");
         body.bind("mouseover", Lib.bind(this.onMouseMove, this));
