@@ -35,7 +35,7 @@
 		require(["harViewer"],function(Interface){
 			Interface.render("z.har");
 			$("#reload").click(function(){
-				Interface.reload("g.har");
+				Interface.reload("http://10.36.20.36:8080/test.json",{jsonp:true});
 			});
 		});
     </script>
