@@ -278,6 +278,7 @@ PageList.prototype = domplate(
 
             // If 'expand' parameter is specified expand all by default.
             var expand = Lib.getURLParameter("expand");
+            //var expand = true;//强制都展开
             if (expand)
                 this.expandAll(table);
         }

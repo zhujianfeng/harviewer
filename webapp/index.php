@@ -3,6 +3,7 @@
 <head>
     <title>HTTP Archive Viewer @VERSION@</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 </head>
 <body class="harBody">
 	<input type="button" id="reload" value="重新加载" />
@@ -24,18 +25,19 @@
 		    viewer.showTabBar(false);
 		    // Remove toolbar buttons
 		    var preview = viewer.getTab("Preview");
-		    preview.showStats(false);
-		    preview.toolbar.removeButton("download");
+		    //preview.showStats(false);
+		    //preview.toolbar.removeButton("download");
 		    preview.toolbar.removeButton("clear");
-		    preview.toolbar.removeButton("showTimeline");
-		    preview.toolbar.removeButton("showStats");
+		    //preview.toolbar.removeButton("showTimeline");
+		    //preview.toolbar.removeButton("showStats");
+		    
 
 		    //viewer.loadHar("z.har");
 		});
 		require(["harViewer"],function(Interface){
-			Interface.render("z.har");
+			Interface.render(["s.har"]);
 			$("#reload").click(function(){
-				Interface.reload("http://10.36.20.36:8080/test.json",{jsonp:true});
+				Interface.reload(["s.har","g.har"]);
 			});
 		});
     </script>

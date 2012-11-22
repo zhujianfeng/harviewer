@@ -6,9 +6,11 @@ HAR Viewer汉化版
 * 修复了原版在IE8及更早版本下不能使用事件触发方式直接显示瀑布图的bug
 * 增加了使用requiresjs直接向外暴露接口的功能
 * 增加了无刷新reload功能
+* 增加调用时传入参数，使用jsonp等方式跨域载入json文件
+* 增加调用时使用列表方式一次载入多个json文件的功能
+* 修复在页面中有svg对象情况下，鼠标在svg对象上移动时浏览器疯狂报错的bug
 * 调用可以使用如下方式
 
-`
 	$("#content").bind("onViewerPreInit", function(event){
 		    // Get application object
 		    var viewer = event.target.repObject;
@@ -16,7 +18,6 @@ HAR Viewer汉化版
 		    viewer.removeTab("DOM");
 		    viewer.removeTab("About");
 		    viewer.removeTab("Schema");
-
 		    // Hide the tab bar
 		    viewer.showTabBar(false);
 		    // Remove toolbar buttons
@@ -25,12 +26,12 @@ HAR Viewer汉化版
 		    preview.toolbar.removeButton("clear");
 	});
 	require(["harViewer"],function(Interface){
-			Interface.render("z.har");
+			Interface.render(["z.har","s.har"]);
 			$("#reload").click(function(){
-				Interface.reload("g.har");
+				Interface.reload(["http://www.someurl.com/g.har"],{jsonp:true});
 			});
 	});
-`
+
 HAR Viewer
 ==========
 

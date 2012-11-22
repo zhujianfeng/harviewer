@@ -203,10 +203,17 @@ var HarViewInterface = {
     render : function(harUrl,settings) {
         var content = document.getElementById("content");
         harView = content.repObject = new HarView();
-
+        var preview = harView.getTab("Preview");
+        preview.addPageTiming({
+                name: "onRender",
+                classes: "onMyEventBar",
+                description: "开始渲染"
+            });
         // Fire some events for listeners. This is useful for extending/customizing the viewer.
         Lib.fireEvent(content, "onViewerPreInit");
-        harView.loadHar(harUrl,settings);
+        for (var i = 0, len = harUrl.length; i < len; i++) {
+            harView.loadHar(harUrl[i],settings);
+        }
         harView.initialize(content);
         Lib.fireEvent(content, "onViewerInit");
     },
@@ -214,13 +221,20 @@ var HarViewInterface = {
         $("#content").find("table.pageTable").remove();
         $("#content").find("table.pageTimelineTable td.pageTimelineCol").remove();
         harView.model.deleteAllPages();
-        harView.loadHar(harUrl,$.extend(settings,{
+        if (harUrl.length <= 0) {
+            return;
+        }
+        var userSetting = settings;
+        harView.loadHar(harUrl[0],$.extend(userSetting,{
             success: function(){
                 var previewTab = harView.getTab("Preview");
                 previewTab.stats.update([]);
                 var firstBar = Lib.getElementByClass(this.element, "pageBar");
                 if (firstBar) {
                     Lib.fireEvent(firstBar, "mousemove");
+                }
+                for (var i = 1, len = harUrl.length; i < len; i++) {
+                    harView.loadHar(harUrl[i],settings);
                 }
             }
         }));

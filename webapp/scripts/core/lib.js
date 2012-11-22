@@ -774,6 +774,9 @@ Lib.hasClass = function(node, name) // className, className, ...
             //if (!re.exec(node.getAttribute("class")))
             //    return false;
             var className = node.className;//node.getAttribute("class");
+            if(typeof(className) == "object") {
+                return false;
+            }
             if (!className || className.indexOf(name + " ") == -1)
                 return false;
         }
