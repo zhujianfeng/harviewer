@@ -201,6 +201,7 @@ HarView.prototype = Lib.extend(new TabView(),
 var harView = null;
 var HarViewInterface = {
     render : function(harUrl,settings) {
+        settings = $.extend({},settings);
         var content = document.getElementById("content");
         harView = content.repObject = new HarView();
         var preview = harView.getTab("Preview");
@@ -211,13 +212,19 @@ var HarViewInterface = {
             });
         // Fire some events for listeners. This is useful for extending/customizing the viewer.
         Lib.fireEvent(content, "onViewerPreInit");
-        for (var i = 0, len = harUrl.length; i < len; i++) {
-            harView.loadHar(harUrl[i],settings);
+
+        if (settings.jsonp) {
+            harView.loadHar(harUrl,settings);
+        } else {
+            for (var i = 0, len = harUrl.length; i < len; i++) {
+                harView.loadHar(harUrl[i],settings);
+            }
         }
         harView.initialize(content);
         Lib.fireEvent(content, "onViewerInit");
     },
     reload : function(harUrl,settings) {
+        settings = $.extend({},settings);
         $("#content").find("table.pageTable").remove();
         $("#content").find("table.pageTimelineTable td.pageTimelineCol").remove();
         harView.model.deleteAllPages();
@@ -233,9 +240,15 @@ var HarViewInterface = {
                 if (firstBar) {
                     Lib.fireEvent(firstBar, "mousemove");
                 }
-                for (var i = 1, len = harUrl.length; i < len; i++) {
-                    harView.loadHar(harUrl[i],settings);
-                }
+                if (settings.jsonp) {
+                harUrl.shift();
+                harView.loadHar(harUrl,settings);
+                } else {
+                    settings = $.extend(settings,{success:function(){}});
+                    for (var k = 1, len = harUrl.length; k < len; k++) {
+                        harView.loadHar(harUrl[k],settings);
+                    }
+                }     
             }
         }));
         

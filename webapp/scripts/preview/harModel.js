@@ -456,10 +456,17 @@ HarModel.Loader =
                 errorCallback.call(scope, response, args);
         }
 
-        if (crossDomain)
-            return this.loadRemoteArchive([url], callbackName, onLoaded, onError);
-        else
+        if (crossDomain) {
+            var getUrls = [];
+            if (typeof(url) == "string") {
+                getUrls = [url];
+            } else {
+                getUrls = url;
+            }
+            return this.loadRemoteArchive(getUrls, callbackName, onLoaded, onError);
+        } else {
             return this.loadLocalArchive(url, onLoaded, onError);
+        }
     }
 };
 

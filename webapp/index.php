@@ -26,7 +26,7 @@
 		    // Remove toolbar buttons
 		    var preview = viewer.getTab("Preview");
 		    //preview.showStats(false);
-		    //preview.toolbar.removeButton("download");
+		    preview.toolbar.removeButton("download");
 		    preview.toolbar.removeButton("clear");
 		    //preview.toolbar.removeButton("showTimeline");
 		    //preview.toolbar.removeButton("showStats");
@@ -35,7 +35,7 @@
 		    //viewer.loadHar("z.har");
 		});
 		require(["harViewer"],function(Interface){
-			Interface.render(["s.har"]);
+			Interface.render(["s.har","g.har","z.har"]);
 			$("#reload").click(function(){
 				Interface.reload(["s.har","g.har"]);
 			});
