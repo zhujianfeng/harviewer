@@ -11,7 +11,7 @@ HAR Viewer汉化版
 * 修复在页面中有svg对象情况下，鼠标在svg对象上移动时浏览器疯狂报错的bug
 * 调用可以使用如下方式
 
-```
+```javascript
 $("#content").bind("onViewerPreInit", function(event){  
         // Get application object  
         var viewer = event.target.repObject;  
