@@ -11,27 +11,30 @@ HAR Viewer汉化版
 * 修复在页面中有svg对象情况下，鼠标在svg对象上移动时浏览器疯狂报错的bug
 * 调用可以使用如下方式
 
-    $("#content").bind("onViewerPreInit", function(event){  
-            // Get application object  
-            var viewer = event.target.repObject;  
-            viewer.removeTab("Home");  
-            viewer.removeTab("DOM");  
-            viewer.removeTab("About");  
-            viewer.removeTab("Schema");  
-            // Hide the tab bar  
-            viewer.showTabBar(false);  
-            // Remove toolbar buttons  
-            var preview = viewer.getTab("Preview");  
-            preview.toolbar.removeButton("download");  
-            preview.toolbar.removeButton("clear");  
-    });  
-    require(["harViewer"],function(Interface){  
-            Interface.render(["z.har","s.har"]);  
-            $("#reload").click(function(){  
-                Interface.reload(["http://www.someurl.com/g.har"],{jsonp:true});  
-            });  
-    });  
-    
+```
+$("#content").bind("onViewerPreInit", function(event){  
+        // Get application object  
+        var viewer = event.target.repObject;  
+        viewer.removeTab("Home");  
+        viewer.removeTab("DOM");  
+        viewer.removeTab("About");  
+        viewer.removeTab("Schema");  
+        // Hide the tab bar  
+        viewer.showTabBar(false);  
+        // Remove toolbar buttons  
+        var preview = viewer.getTab("Preview");  
+        preview.toolbar.removeButton("download");  
+        preview.toolbar.removeButton("clear");  
+});  
+require(["harViewer"],function(Interface){  
+        Interface.render(["z.har","s.har"]);  
+        $("#reload").click(function(){  
+            Interface.reload(["http://www.someurl.com/g.har"],{jsonp:true});  
+        });  
+});  
+
+```
+
 HAR Viewer
 ==========
 
