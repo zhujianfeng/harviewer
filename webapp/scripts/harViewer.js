@@ -1,6 +1,6 @@
 /* See license.txt for terms of usage */
 
-require.def("harViewer", [
+define("harViewer", [
     "domplate/tabView",
     "tabs/homeTab",
     "tabs/aboutTab",
@@ -133,7 +133,6 @@ HarView.prototype = Lib.extend(new TabView(),
         // HAR loaded, parsed and appended into the UI, let's shut down the progress.
         if (homeTab)
             homeTab.loadInProgress(false);
-
         Lib.fireEvent(content, "onViewerHARLoaded");
     },
 
@@ -199,11 +198,14 @@ HarView.prototype = Lib.extend(new TabView(),
 
 //Trace.log("HarViewer; initialized OK");
 var harView = null;
+var content = null;
 var HarViewInterface = {
-    render : function(harUrl,settings) {
+    render : function(harUrl,settings, element) {
+        element = element ? element : "content";
         settings = $.extend({},settings);
-        var content = document.getElementById("content");
+        content = document.getElementById(element);
         harView = content.repObject = new HarView();
+        harView.id = "harview" + element;
         var preview = harView.getTab("Preview");
         preview.addPageTiming({
                 name: "onRender",
@@ -221,12 +223,14 @@ var HarViewInterface = {
             }
         }
         harView.initialize(content);
+
         Lib.fireEvent(content, "onViewerInit");
     },
-    reload : function(harUrl,settings) {
+    reload : function(harUrl,settings, element) {
+        element = element ? element : "content";
         settings = $.extend({},settings);
-        $("#content").find("table.pageTable").remove();
-        $("#content").find("table.pageTimelineTable td.pageTimelineCol").remove();
+        $("#" + element).find("table.pageTable").remove();
+        $("#" + element).find("table.pageTimelineTable td.pageTimelineCol").remove();
         harView.model.deleteAllPages();
         if (harUrl.length <= 0) {
             return;

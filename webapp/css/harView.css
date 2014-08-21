@@ -65,7 +65,9 @@
 .harView[hideTabBar="true"] .harViewBar {
     display: none;
 }
-
+.harviewcontent[hideTabBar="true"] .harviewcontentBar {
+    display: none;
+}
 .harView[hideTabBar="true"] .harViewBodies {
     position: inherit;
 }

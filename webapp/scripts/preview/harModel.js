@@ -1,6 +1,6 @@
 /* See license.txt for terms of usage */
 
-require.def("preview/harModel", [
+define("preview/harModel", [
     "core/lib",
     "preview/jsonSchema",
     "preview/ref",
@@ -19,10 +19,11 @@ function(Lib, JSONSchema, Ref, HarSchema, Cookies, Trace, Strings) {
 function HarModel()
 {
     this.input = null;
+    this.WrapID = "content";//默认使用content作为id
 }
 
 HarModel.prototype =
-{
+{   
     append: function(input)
     {
         if (!input)

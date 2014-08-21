@@ -1,6 +1,6 @@
 /* See license.txt for terms of usage */
 
-require.def("preview/requestList", [
+define("preview/requestList", [
     "domplate/domplate",
     "core/lib",
     "i18n!nls/requestList",
@@ -84,12 +84,16 @@ RequestList.getVisibleColumns = function()
 
     if (!cols)
     {
-        var content = document.getElementById("content");
-        if (content)
-        {
-            cols = content.getAttribute("previewCols");
-            if (cols)
-                return cols.split(" ");
+        //var content = document.getElementById("content-1");
+        var contents = $(".harViewer");
+        for (var i = 0; i < contents.length; i++) {
+            var content = contents.get(i);
+            if (content)
+            {
+                cols = content.getAttribute("previewCols");
+                if (cols)
+                    return cols.split(" ");
+            }
         }
     }
 
@@ -105,9 +109,12 @@ RequestList.setVisibleColumns = function(cols, avoidCookies)
     if (cols.join)
         cols = cols.join(" ");
 
-    var content = document.getElementById("content");
-    if (content)
-        content.setAttribute("previewCols", cols);
+    var contents = $(".harViewer");
+    for (var i = 0; i < contents.length; i++) {
+        var content = contents.get(i);
+        if (content)
+            content.setAttribute("previewCols", cols);
+    }
 
     // Update cookie
     if (!avoidCookies)
@@ -116,7 +123,6 @@ RequestList.setVisibleColumns = function(cols, avoidCookies)
 
 // Initialize UI. List of columns is specified on the content element (used by CSS).
 RequestList.setVisibleColumns();
-
 // ********************************************************************************************* //
 
 /**

@@ -1,6 +1,6 @@
 /* See license.txt for terms of usage */
 
-require.def("core/trace", [
+define("core/trace", [
 ],
 
 function() {
@@ -20,7 +20,7 @@ if (typeof(console) == "undefined")
 
 // #ifdef _DEBUG
 Trace.log = function()
-{
+{   
     if (typeof(console.log) == "function")
         console.log.apply(console, arguments);
 };

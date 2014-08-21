@@ -1,6 +1,6 @@
 /* See license.txt for terms of usage */
 
-require.def("harPreview", [
+define("harPreview", [
     "preview/requestList",
     "preview/pageList",
     "preview/harModel",
@@ -90,7 +90,7 @@ HarPreview.prototype =
 //*************************************************************************************************
 // Initialization
 
-var content = document.getElementById("content");
+var content = document.getElementById("content-1");
 var harPreview = content.repObject = new HarPreview();
 
 // Fire some events for listeners. This is useful for extending/customizing the viewer.

@@ -1,13 +1,16 @@
 /* See license.txt for terms of usage */
 
-require.def("domplate/domplate", [], function() {
+define("domplate/domplate", [], function() {
 
 //*************************************************************************************************
 
 Domplate = {};
 
 (function(){
-
+function isIE() {
+    var userAgent = navigator.userAgent.toLowerCase();
+    return /msie/.test(userAgent) && !/opera/.test(userAgent);
+}
 function DomplateTag(tagName)
 {
     this.tagName = tagName;
@@ -114,7 +117,7 @@ DomplateTag.prototype =
 
             if (name.indexOf("on") == 0)
             {
-                var eventName = $.browser.msie ? name : name.substr(2);
+                var eventName = isIE() ? name : name.substr(2);
                 if (!this.listeners)
                     this.listeners = [];
                 this.listeners.push(eventName, val);
@@ -244,7 +247,7 @@ DomplateTag.prototype =
             }
         }
 
-        var js = $.browser.msie ? 'var f = ' + fnBlock.join("") + ';f' : fnBlock.join("");
+        var js = isIE() ? 'var f = ' + fnBlock.join("") + ';f' : fnBlock.join("");
         this.renderMarkup = eval(js);
     },
 
@@ -456,7 +459,7 @@ DomplateTag.prototype =
             return parent;
         }
 
-        var js = $.browser.msie ? 'var f = ' + fnBlock.join("") + ';f' : fnBlock.join("");
+        var js = isIE() ? 'var f = ' + fnBlock.join("") + ';f' : fnBlock.join("");
         //ddd(js.replace(/(\;|\{)/g, "$1\n"));
         this.renderDOM = eval(js);
     },
@@ -472,7 +475,7 @@ DomplateTag.prototype =
             {
                 var val = this.listeners[i+1];
                 var arg = generateArg(val, path, args);
-                if ($.browser.msie)
+                if (isIE())
                     blocks.push('node.attachEvent("', this.listeners[i], '", __bind__(this, ', arg, '));\n');
                 else
                     blocks.push('node.addEventListener("', this.listeners[i], '", __bind__(this, ', arg, '), false);\n');
