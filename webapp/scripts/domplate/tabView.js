@@ -246,6 +246,7 @@ TabView.prototype =
 
         for (var i in this.tabs)
         {
+            if(!this.tabs.hasOwnProperty(i)) continue;
             var tab = this.tabs[i];
             var tabHeaderTag = tab.tabHeaderTag ? tab.tabHeaderTag : TabViewTempl.tabHeaderTag;
             var tabBodyTag = tab.tabBodyTag ? tab.tabBodyTag : TabViewTempl.tabBodyTag;
